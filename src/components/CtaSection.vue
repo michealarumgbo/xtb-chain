@@ -1,6 +1,6 @@
 <template>
     <section class="py-20 bg-[#F7CF06] relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-yellow-600/20 to-transparent"></div>
+        <div class="absolute inset-0 bg-linear-to-r from-yellow-600/20 to-transparent"></div>
 
         <div class="container mx-auto px-4 md:px-6 relative z-10">
             <div class="max-w-3xl mx-auto text-center">

@@ -102,19 +102,13 @@ const products = [
 ];
 
 const services = [
-    "Institutional",
-    "VIP Program",
-    "API",
     "Referral Program",
     "Affiliate",
 ];
 
 const support = [
     "Help Center",
-    "Fees",
-    "Security",
     "Contact Us",
-    "Status",
 ];
 </script>
 

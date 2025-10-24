@@ -50,7 +50,7 @@
                             <!-- 24/7 Trading -->
                             <div class="flex items-start gap-4">
                                 <div
-                                    class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center flex-shrink-0">
+                                    class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center shrink-0">
                                     <Zap class="h-6 w-6 text-[#F7CF06]" />
                                 </div>
                                 <div>
@@ -65,7 +65,7 @@
                             <!-- Emotion-Free Trading -->
                             <div class="flex items-start gap-4">
                                 <div
-                                    class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center flex-shrink-0">
+                                    class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center shrink-0">
                                     <TrendingUp class="h-6 w-6 text-[#F7CF06]" />
                                 </div>
                                 <div>
@@ -79,7 +79,7 @@
                             <!-- Customizable -->
                             <div class="flex items-start gap-4">
                                 <div
-                                    class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center flex-shrink-0">
+                                    class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center shrink-0">
                                     <Settings class="h-6 w-6 text-[#F7CF06]" />
                                 </div>
                                 <div>

@@ -26,7 +26,7 @@
                         <div class="space-y-6">
                             <div v-for="(step, index) in steps" :key="index" class="flex gap-4">
                                 <div
-                                    class="h-12 w-12 rounded-full bg-[#F7CF06] flex items-center justify-center flex-shrink-0 font-bold text-[#121214]">
+                                    class="h-12 w-12 rounded-full bg-[#F7CF06] flex items-center justify-center shrink-0 font-bold text-[#121214]">
                                     {{ index + 1 }}
                                 </div>
                                 <div>
@@ -38,8 +38,8 @@
                     </div>
 
                     <!-- Stats -->
-                    <div class="bg-[#121214] rounded-xl p-8">
-                        <h4 class="text-xl font-bold mb-6">Your Referral Stats</h4>
+                    <div class="bg-[#121214] hidden md:block rounded-xl p-8">
+                        <h4 class="text-xl  font-bold mb-6">Your Referral Stats</h4>
                         <div class="space-y-6">
                             <div v-for="(stat, index) in stats" :key="index">
                                 <div class="flex items-center justify-between mb-2">

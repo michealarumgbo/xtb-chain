@@ -21,7 +21,7 @@
                     class="glass-card rounded-xl p-6 hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-6">
                         <div
-                            class="h-16 w-16 rounded-full bg-gradient-to-br from-[#F7CF06] to-yellow-600 flex items-center justify-center text-[#121214] font-bold text-xl">
+                            class="h-16 w-16 rounded-full bg-linear-to-br from-[#F7CF06] to-yellow-600 flex items-center justify-center text-[#121214] font-bold text-xl">
                             {{ trader.avatar }}
                         </div>
                         <div>

@@ -12,10 +12,11 @@
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a v-for="(item, index) in navItems" :key="index" href="#"
+                <router-link v-for="(navItem, index) in navItems" :key="index" :to="navItem.href"
+                    active-class="text-[#F7CF06]"
                     class="text-sm font-medium text-crypto-white hover:text-[#F7CF06] transition-colors">
-                    {{ item }}
-                </a>
+                    {{ navItem.name }}
+                </router-link>
             </nav>
 
             <!-- Desktop Call to Action -->
@@ -37,12 +38,13 @@
 
         <!-- Mobile Menu -->
         <transition name="slide-fade">
-            <div v-if="isMobileMenuOpen" class="md:hidden bg-crypto-darkgray animate-slide-in-right">
+            <div v-if="isMobileMenuOpen" class="md:hidden bg-[#1E1E22] animate-slide-in-right">
                 <div class="container mx-auto px-4 py-6 space-y-6">
-                    <a v-for="(item, index) in navItems" :key="index" href="#"
+                    <router-link v-for="(navItem, index) in navItems" :key="index" :to="navItem.href"
+                        active-class="text-[#F7CF06]"
                         class="block text-sm font-medium text-crypto-white hover:text-[#F7CF06] transition-colors">
-                        {{ item }}
-                    </a>
+                        {{ navItem.name }}
+                    </router-link>
 
                     <div class="pt-4 space-y-3">
                         <button
@@ -67,7 +69,15 @@ import { Menu as MenuIcon, X as XIcon } from "lucide-vue-next";
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
 
-const navItems = ["Markets", "Trade", "Derivatives", "Earn", "Learn"];
+const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Markets", href: "/markets" },
+    { name: "Trade", href: "/trade-page" },
+    { name: "Derivatives", href: "/derivatives" },
+    { name: "Earn", href: "/earn-page" },
+    { name: "Learn", href: "/learn" },
+];
+
 
 const handleScroll = () => {
     isScrolled.value = window.scrollY > 10;

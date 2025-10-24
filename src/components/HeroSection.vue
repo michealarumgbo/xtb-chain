@@ -126,6 +126,7 @@ import { ArrowRightIcon, TrendingUpIcon, ZapIcon, ShieldIcon } from "lucide-vue-
 .text-gradient {
     background: linear-gradient(to right, #f7cf06, #facc15);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

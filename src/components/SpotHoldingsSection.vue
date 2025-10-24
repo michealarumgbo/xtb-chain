@@ -86,7 +86,7 @@
                             <p class="font-bold">{{ holding.amount }}</p>
                             <p class="text-sm text-[#8A8A9D]">{{ holding.value }}</p>
                         </div>
-                        <div class="text-right min-w-[80px]">
+                        <div class="text-right min-w-20">
                             <span class="font-semibold"
                                 :class="holding.change.startsWith('+') ? 'text-green-500' : 'text-[#8A8A9D]'">
                                 {{ holding.change }}

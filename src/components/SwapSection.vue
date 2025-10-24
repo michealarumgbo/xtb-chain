@@ -21,8 +21,7 @@
 
                     <div class="space-y-6 mb-8">
                         <div class="flex items-start gap-4">
-                            <div
-                                class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center flex-shrink-0">
+                            <div class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center shrink-0">
                                 <Zap class="h-6 w-6 text-[#F7CF06]" />
                             </div>
                             <div>
@@ -32,8 +31,7 @@
                         </div>
 
                         <div class="flex items-start gap-4">
-                            <div
-                                class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center flex-shrink-0">
+                            <div class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center shrink-0">
                                 <DollarSign class="h-6 w-6 text-[#F7CF06]" />
                             </div>
                             <div>
@@ -43,8 +41,7 @@
                         </div>
 
                         <div class="flex items-start gap-4">
-                            <div
-                                class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center flex-shrink-0">
+                            <div class="h-12 w-12 rounded-lg bg-[#F7CF06]/10 flex items-center justify-center shrink-0">
                                 <Shield class="h-6 w-6 text-[#F7CF06]" />
                             </div>
                             <div>
@@ -60,7 +57,7 @@
                 </div>
 
                 <!-- RIGHT CONTENT (SWAP CARD) -->
-                <div class="glass-card rounded-2xl p-8">
+                <div class="glass-card hidden md:block rounded-2xl p-8">
                     <h3 class="text-2xl font-bold mb-6 text-center">Quick Swap</h3>
 
                     <div class="space-y-4">

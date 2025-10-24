@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XTBChain - Advanced Crypto Trading</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Custom styles to match the original design */
+      body {
+        background-color: #121214;
+        color: white;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .text-gradient {
+        background: linear-gradient(to right, #f7cf06, #facc15);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .chart-line {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: dash 3s ease-in-out forwards;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .button-hover-effect {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .button-hover-effect::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        transform-origin: 0;
+        scale: 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .button-hover-effect:hover::after {
+        scale: 1;
+      }
+
+      .navbar-blur {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: #121214;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 9999px;
+        background-color: #8a8a9d;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #f7cf06;
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .feature-card {
+        transform-style: preserve-3d;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .tab-active {
+        background: rgba(247, 207, 6, 0.1);
+        border-color: #f7cf06;
+        color: #f7cf06;
+      }
+
+      .section-hidden {
+        display: none;
+      }
+
+      .section-active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Main Content -->
+    <main class="flex-1 pt-32">
+      <!-- Trading Tabs -->
+      <section class="py-8 bg-[#1E1E22]">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="flex flex-wrap justify-center gap-4">
+            <button
+              id="spot-tab"
+              class="px-6 py-3 rounded-lg bg-[#F7CF06] text-black font-semibold tab-active"
+            >
+              <i class="fas fa-chart-line mr-2"></i>Spot Trading
+            </button>
+            <button
+              id="margin-tab"
+              class="px-6 py-3 rounded-lg glass-card hover:bg-white/5 font-medium"
+            >
+              <i class="fas fa-balance-scale mr-2"></i>Margin Trading
+            </button>
+            <button
+              id="futures-tab"
+              class="px-6 py-3 rounded-lg glass-card hover:bg-white/5 font-medium"
+            >
+              <i class="fas fa-rocket mr-2"></i>Futures
+            </button>
+            <button
+              id="staking-tab"
+              class="px-6 py-3 rounded-lg glass-card hover:bg-white/5 font-medium"
+            >
+              <i class="fas fa-coins mr-2"></i>Staking
+            </button>
+            <button
+              id="savings-tab"
+              class="px-6 py-3 rounded-lg glass-card hover:bg-white/5 font-medium"
+            >
+              <i class="fas fa-piggy-bank mr-2"></i>Savings
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spot Trading Section -->
+      <section id="spot-section" class="section-active py-12 bg-[#121214]">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+              Trade Crypto <span class="text-gradient">Instantly</span>
+            </h1>
+            <p class="text-[#8A8A9D] text-lg">
+              Buy and sell cryptocurrencies at market prices with our advanced spot trading
+              platform.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Trading Chart -->
+            <div class="lg:col-span-2">
+              <div class="glass-card rounded-xl overflow-hidden">
+                <div
+                  class="bg-[#1E1E22] px-6 py-4 border-b border-white/10 flex justify-between items-center"
+                >
+                  <div class="flex items-center space-x-4">
+                    <h3 class="text-xl font-bold">BTC/USDT</h3>
+                    <span class="text-green-500 font-semibold">+2.34%</span>
+                  </div>
+                  <div class="flex space-x-2">
+                    <button class="text-sm px-3 py-1 rounded bg-[#121214] hover:bg-[#1E1E22]">
+                      1H
+                    </button>
+                    <button class="text-sm px-3 py-1 rounded bg-[#121214] hover:bg-[#1E1E22]">
+                      1D
+                    </button>
+                    <button class="text-sm px-3 py-1 rounded bg-[#121214] hover:bg-[#1E1E22]">
+                      1W
+                    </button>
+                    <button class="text-sm px-3 py-1 rounded bg-[#F7CF06] text-black">1M</button>
+                  </div>
+                </div>
+                <div class="h-96 flex items-center justify-center">
+                  <!-- Chart placeholder -->
+                  <div class="text-center">
+                    <i class="fas fa-chart-line text-6xl text-[#F7CF06] mb-4"></i>
+                    <p class="text-[#8A8A9D]">Live Trading Chart</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trading Panel -->
+            <div class="space-y-6">
+              <!-- Buy/Sell Panel -->
+              <div class="glass-card rounded-xl p-6">
+                <div class="flex border-b border-white/10 mb-4">
+                  <button
+                    class="flex-1 py-3 font-semibold text-center border-b-2 border-[#F7CF06] text-[#F7CF06]"
+                  >
+                    Buy
+                  </button>
+                  <button
+                    class="flex-1 py-3 font-semibold text-center text-[#8A8A9D] hover:text-white"
+                  >
+                    Sell
+                  </button>
+                </div>
+
+                <div class="space-y-4">
+                  <div>
+                    <div class="flex justify-between text-sm text-[#8A8A9D] mb-2">
+                      <span>Available</span>
+                      <span>2,450.00 USDT</span>
+                    </div>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="0.00"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 text-lg font-bold outline-none"
+                      />
+                      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <span class="text-sm font-semibold">USDT</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-sm text-[#8A8A9D] mb-2">
+                      <span>Price</span>
+                      <span>$43,578.92</span>
+                    </div>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="0.00"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 text-lg font-bold outline-none"
+                      />
+                      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <span class="text-sm font-semibold">USDT</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-sm text-[#8A8A9D] mb-2">
+                      <span>Amount</span>
+                      <span>~0.0000 BTC</span>
+                    </div>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="0.00"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 text-lg font-bold outline-none"
+                      />
+                      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <span class="text-sm font-semibold">BTC</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex space-x-2">
+                    <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                      25%
+                    </button>
+                    <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                      50%
+                    </button>
+                    <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                      75%
+                    </button>
+                    <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                      100%
+                    </button>
+                  </div>
+
+                  <button
+                    class="w-full bg-[#F7CF06] hover:bg-yellow-500 text-black font-bold py-4 rounded-lg mt-4"
+                  >
+                    Buy BTC
+                  </button>
+                </div>
+              </div>
+
+              <!-- Order Book -->
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">Order Book</h3>
+                <div class="space-y-2">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-red-500">43,572.12</span>
+                    <span>0.245</span>
+                    <span class="text-[#8A8A9D]">10.67K</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-red-500">43,571.85</span>
+                    <span>0.189</span>
+                    <span class="text-[#8A8A9D]">8.24K</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-red-500">43,570.43</span>
+                    <span>0.432</span>
+                    <span class="text-[#8A8A9D]">18.82K</span>
+                  </div>
+                  <div class="text-center py-2">
+                    <span class="text-lg font-bold">43,578.92</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-green-500">43,580.15</span>
+                    <span>0.321</span>
+                    <span class="text-[#8A8A9D]">14.01K</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-green-500">43,581.27</span>
+                    <span>0.456</span>
+                    <span class="text-[#8A8A9D]">19.89K</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-green-500">43,582.50</span>
+                    <span>0.298</span>
+                    <span class="text-[#8A8A9D]">13.00K</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Margin Trading Section -->
+      <section id="margin-section" class="section-hidden py-12 bg-[#121214]">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+              Amplify Your <span class="text-gradient">Trading Power</span>
+            </h1>
+            <p class="text-[#8A8A9D] text-lg">
+              Trade with leverage and amplify your potential returns with our advanced margin
+              trading platform.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Margin Info -->
+            <div class="lg:col-span-2">
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-2xl font-bold mb-6">Margin Account Overview</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <div class="bg-[#1E1E22] rounded-lg p-4">
+                    <p class="text-[#8A8A9D] mb-2">Total Equity</p>
+                    <p class="text-2xl font-bold">$15,842.50</p>
+                  </div>
+                  <div class="bg-[#1E1E22] rounded-lg p-4">
+                    <p class="text-[#8A8A9D] mb-2">Available Margin</p>
+                    <p class="text-2xl font-bold">$8,245.75</p>
+                  </div>
+                  <div class="bg-[#1E1E22] rounded-lg p-4">
+                    <p class="text-[#8A8A9D] mb-2">Margin Level</p>
+                    <p class="text-2xl font-bold text-green-500">245%</p>
+                  </div>
+                  <div class="bg-[#1E1E22] rounded-lg p-4">
+                    <p class="text-[#8A8A9D] mb-2">Leverage</p>
+                    <p class="text-2xl font-bold">5x</p>
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <h4 class="font-bold mb-4">Open Positions</h4>
+                  <div class="space-y-4">
+                    <div class="flex justify-between items-center p-4 bg-[#1E1E22] rounded-lg">
+                      <div>
+                        <p class="font-semibold">BTC/USDT</p>
+                        <p class="text-sm text-[#8A8A9D]">Long • 5x Leverage</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-semibold">+$1,245.50</p>
+                        <p class="text-sm text-green-500">+8.3%</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-[#1E1E22] rounded-lg">
+                      <div>
+                        <p class="font-semibold">ETH/USDT</p>
+                        <p class="text-sm text-[#8A8A9D]">Short • 3x Leverage</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-semibold">-$324.75</p>
+                        <p class="text-sm text-red-500">-2.1%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  class="w-full bg-[#F7CF06] hover:bg-yellow-500 text-black font-bold py-4 rounded-lg"
+                >
+                  Open New Position
+                </button>
+              </div>
+            </div>
+
+            <!-- Leverage Calculator -->
+            <div class="space-y-6">
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">Leverage Calculator</h3>
+
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Position Size (USDT)</label>
+                    <input
+                      type="text"
+                      placeholder="1000"
+                      class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Leverage</label>
+                    <select class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none">
+                      <option>3x</option>
+                      <option selected>5x</option>
+                      <option>10x</option>
+                      <option>20x</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Entry Price</label>
+                    <input
+                      type="text"
+                      placeholder="43,578.92"
+                      class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Liquidation Price</label>
+                    <input
+                      type="text"
+                      placeholder="41,200.00"
+                      class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                      readonly
+                    />
+                  </div>
+
+                  <div class="pt-4 border-t border-white/10">
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#8A8A9D]">Required Margin</span>
+                      <span class="font-semibold">200.00 USDT</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-[#8A8A9D]">Potential Profit (10%)</span>
+                      <span class="font-semibold text-green-500">500.00 USDT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">Risk Management</h3>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-3"></i>
+                    <span class="text-sm">Leverage increases both profits and losses</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-bell text-yellow-500 mr-3"></i>
+                    <span class="text-sm">Monitor your margin level closely</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-yellow-500 mr-3"></i>
+                    <span class="text-sm">Set stop-loss orders to manage risk</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Futures Section -->
+      <section id="futures-section" class="section-hidden py-12 bg-[#121214]">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+              Trade the <span class="text-gradient">Future</span>
+            </h1>
+            <p class="text-[#8A8A9D] text-lg">
+              Speculate on cryptocurrency price movements with up to 125x leverage on our futures
+              trading platform.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Futures Trading -->
+            <div class="lg:col-span-2">
+              <div class="glass-card rounded-xl overflow-hidden">
+                <div class="bg-[#1E1E22] px-6 py-4 border-b border-white/10">
+                  <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                      <h3 class="text-xl font-bold">BTCUSDT Perpetual</h3>
+                      <span class="text-green-500 font-semibold">+2.34%</span>
+                    </div>
+                    <div class="flex space-x-2">
+                      <button class="text-sm px-3 py-1 rounded bg-[#121214] hover:bg-[#1E1E22]">
+                        1H
+                      </button>
+                      <button class="text-sm px-3 py-1 rounded bg-[#121214] hover:bg-[#1E1E22]">
+                        1D
+                      </button>
+                      <button class="text-sm px-3 py-1 rounded bg-[#F7CF06] text-black">1W</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="h-96 flex items-center justify-center">
+                  <!-- Chart placeholder -->
+                  <div class="text-center">
+                    <i class="fas fa-chart-line text-6xl text-[#F7CF06] mb-4"></i>
+                    <p class="text-[#8A8A9D]">Futures Trading Chart</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Futures Panel -->
+            <div class="space-y-6">
+              <div class="glass-card rounded-xl p-6">
+                <div class="flex border-b border-white/10 mb-4">
+                  <button
+                    class="flex-1 py-3 font-semibold text-center border-b-2 border-[#F7CF06] text-[#F7CF06]"
+                  >
+                    Long
+                  </button>
+                  <button
+                    class="flex-1 py-3 font-semibold text-center text-[#8A8A9D] hover:text-white"
+                  >
+                    Short
+                  </button>
+                </div>
+
+                <div class="space-y-4">
+                  <div>
+                    <div class="flex justify-between text-sm text-[#8A8A9D] mb-2">
+                      <span>Available</span>
+                      <span>5,000.00 USDT</span>
+                    </div>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="0.00"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 text-lg font-bold outline-none"
+                      />
+                      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <span class="text-sm font-semibold">USDT</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Leverage</label>
+                    <div class="flex items-center space-x-2 mb-2">
+                      <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                        10x
+                      </button>
+                      <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                        25x
+                      </button>
+                      <button class="flex-1 py-2 bg-[#F7CF06] text-black rounded text-sm font-bold">
+                        50x
+                      </button>
+                      <button class="flex-1 py-2 bg-[#121214] hover:bg-[#1E1E22] rounded text-sm">
+                        100x
+                      </button>
+                    </div>
+                    <div class="relative">
+                      <input type="range" min="1" max="125" value="50" class="w-full" />
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm text-[#8A8A9D] mb-2">Take Profit</label>
+                      <input
+                        type="text"
+                        placeholder="0.00%"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-sm text-[#8A8A9D] mb-2">Stop Loss</label>
+                      <input
+                        type="text"
+                        placeholder="0.00%"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="pt-4 border-t border-white/10">
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#8A8A9D]">Liquidation Price</span>
+                      <span class="font-semibold">$41,200.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-[#8A8A9D]">Potential PnL</span>
+                      <span class="font-semibold text-green-500">+$2,450.00</span>
+                    </div>
+                  </div>
+
+                  <button
+                    class="w-full bg-[#F7CF06] hover:bg-yellow-500 text-black font-bold py-4 rounded-lg mt-4"
+                  >
+                    Open Long Position
+                  </button>
+                </div>
+              </div>
+
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">Futures Stats</h3>
+                <div class="space-y-3">
+                  <div class="flex justify-between">
+                    <span class="text-[#8A8A9D]">24h Volume</span>
+                    <span class="font-semibold">$12.4B</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-[#8A8A9D]">Open Interest</span>
+                    <span class="font-semibold">$8.7B</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-[#8A8A9D]">Funding Rate</span>
+                    <span class="font-semibold text-green-500">0.01%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Staking Section -->
+      <section id="staking-section" class="section-hidden py-12 bg-[#121214]">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+              Earn Passive <span class="text-gradient">Income</span>
+            </h1>
+            <p class="text-[#8A8A9D] text-lg">
+              Stake your cryptocurrencies and earn attractive rewards with our secure staking
+              platform.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Staking Options -->
+            <div class="lg:col-span-2">
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-2xl font-bold mb-6">Available Staking Options</h3>
+
+                <div class="space-y-6">
+                  <div
+                    class="flex items-center justify-between p-4 bg-[#1E1E22] rounded-lg hover:bg-white/5 cursor-pointer"
+                  >
+                    <div class="flex items-center">
+                      <div
+                        class="h-12 w-12 rounded-full bg-purple-500 flex items-center justify-center mr-4"
+                      >
+                        <span class="font-bold text-white">E</span>
+                      </div>
+                      <div>
+                        <p class="font-semibold">Ethereum (ETH)</p>
+                        <p class="text-sm text-[#8A8A9D]">Flexible Staking</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-xl font-bold text-green-500">5.2% APY</p>
+                      <p class="text-sm text-[#8A8A9D]">No Lock-up</p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-4 bg-[#1E1E22] rounded-lg hover:bg-white/5 cursor-pointer"
+                  >
+                    <div class="flex items-center">
+                      <div
+                        class="h-12 w-12 rounded-full bg-cyan-500 flex items-center justify-center mr-4"
+                      >
+                        <span class="font-bold text-white">S</span>
+                      </div>
+                      <div>
+                        <p class="font-semibold">Solana (SOL)</p>
+                        <p class="text-sm text-[#8A8A9D]">30-Day Locked</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-xl font-bold text-green-500">7.8% APY</p>
+                      <p class="text-sm text-[#8A8A9D]">30 Days</p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-4 bg-[#1E1E22] rounded-lg hover:bg-white/5 cursor-pointer"
+                  >
+                    <div class="flex items-center">
+                      <div
+                        class="h-12 w-12 rounded-full bg-yellow-500 flex items-center justify-center mr-4"
+                      >
+                        <span class="font-bold text-white">B</span>
+                      </div>
+                      <div>
+                        <p class="font-semibold">BNB</p>
+                        <p class="text-sm text-[#8A8A9D]">90-Day Locked</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-xl font-bold text-green-500">12.5% APY</p>
+                      <p class="text-sm text-[#8A8A9D]">90 Days</p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-4 bg-[#1E1E22] rounded-lg hover:bg-white/5 cursor-pointer"
+                  >
+                    <div class="flex items-center">
+                      <div
+                        class="h-12 w-12 rounded-full bg-blue-500 flex items-center justify-center mr-4"
+                      >
+                        <span class="font-bold text-white">D</span>
+                      </div>
+                      <div>
+                        <p class="font-semibold">Polkadot (DOT)</p>
+                        <p class="text-sm text-[#8A8A9D]">Flexible Staking</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-xl font-bold text-green-500">14.3% APY</p>
+                      <p class="text-sm text-[#8A8A9D]">No Lock-up</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Staking Calculator -->
+            <div class="space-y-6">
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">Staking Calculator</h3>
+
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Amount to Stake</label>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="0.00"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 text-lg font-bold outline-none"
+                      />
+                      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <span class="text-sm font-semibold">ETH</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">APY</label>
+                    <input
+                      type="text"
+                      placeholder="5.2"
+                      class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Staking Period</label>
+                    <select class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none">
+                      <option>30 Days</option>
+                      <option>60 Days</option>
+                      <option selected>90 Days</option>
+                      <option>180 Days</option>
+                      <option>365 Days</option>
+                    </select>
+                  </div>
+
+                  <div class="pt-4 border-t border-white/10">
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#8A8A9D]">Estimated Rewards</span>
+                      <span class="font-semibold text-green-500">0.125 ETH</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-[#8A8A9D]">Total After Staking</span>
+                      <span class="font-semibold">5.125 ETH</span>
+                    </div>
+                  </div>
+
+                  <button
+                    class="w-full bg-[#F7CF06] hover:bg-yellow-500 text-black font-bold py-4 rounded-lg mt-4"
+                  >
+                    Stake Now
+                  </button>
+                </div>
+              </div>
+
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">Active Staking</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p class="font-semibold">ETH Staking</p>
+                      <p class="text-sm text-[#8A8A9D]">5.2% APY • 45 days left</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold">5.0 ETH</p>
+                      <p class="text-sm text-green-500">+0.032 ETH earned</p>
+                    </div>
+                  </div>
+                  <div class="w-full bg-[#1E1E22] rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: 50%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Savings Section -->
+      <section id="savings-section" class="section-hidden py-12 bg-[#121214]">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+              Grow Your <span class="text-gradient">Wealth</span>
+            </h1>
+            <p class="text-[#8A8A9D] text-lg">
+              Earn interest on your idle cryptocurrencies with our flexible savings products.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Savings Products -->
+            <div class="lg:col-span-2">
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-2xl font-bold mb-6">Savings Products</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="bg-[#1E1E22] rounded-xl p-6 hover:bg-white/5 cursor-pointer">
+                    <div class="flex items-center mb-4">
+                      <div
+                        class="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center mr-3"
+                      >
+                        <i class="fas fa-coins text-white"></i>
+                      </div>
+                      <div>
+                        <p class="font-semibold">Flexible Savings</p>
+                        <p class="text-xs text-[#8A8A9D]">Redeem anytime</p>
+                      </div>
+                    </div>
+                    <p class="text-3xl font-bold text-green-500 mb-2">3.8% APY</p>
+                    <p class="text-sm text-[#8A8A9D]">Earn daily interest with no lock-up period</p>
+                  </div>
+
+                  <div class="bg-[#1E1E22] rounded-xl p-6 hover:bg-white/5 cursor-pointer">
+                    <div class="flex items-center mb-4">
+                      <div
+                        class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center mr-3"
+                      >
+                        <i class="fas fa-lock text-white"></i>
+                      </div>
+                      <div>
+                        <p class="font-semibold">Fixed Savings</p>
+                        <p class="text-xs text-[#8A8A9D]">7-90 day terms</p>
+                      </div>
+                    </div>
+                    <p class="text-3xl font-bold text-green-500 mb-2">6.5% APY</p>
+                    <p class="text-sm text-[#8A8A9D]">Higher yields with fixed terms</p>
+                  </div>
+
+                  <div class="bg-[#1E1E22] rounded-xl p-6 hover:bg-white/5 cursor-pointer">
+                    <div class="flex items-center mb-4">
+                      <div
+                        class="h-10 w-10 rounded-full bg-purple-500 flex items-center justify-center mr-3"
+                      >
+                        <i class="fas fa-gem text-white"></i>
+                      </div>
+                      <div>
+                        <p class="font-semibold">VIP Savings</p>
+                        <p class="text-xs text-[#8A8A9D]">For large deposits</p>
+                      </div>
+                    </div>
+                    <p class="text-3xl font-bold text-green-500 mb-2">8.2% APY</p>
+                    <p class="text-sm text-[#8A8A9D]">Premium rates for VIP clients</p>
+                  </div>
+
+                  <div class="bg-[#1E1E22] rounded-xl p-6 hover:bg-white/5 cursor-pointer">
+                    <div class="flex items-center mb-4">
+                      <div
+                        class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center mr-3"
+                      >
+                        <i class="fas fa-rocket text-white"></i>
+                      </div>
+                      <div>
+                        <p class="font-semibold">DeFi Savings</p>
+                        <p class="text-xs text-[#8A8A9D]">Highest yields</p>
+                      </div>
+                    </div>
+                    <p class="text-3xl font-bold text-green-500 mb-2">12.7% APY</p>
+                    <p class="text-sm text-[#8A8A9D]">Access DeFi yields securely</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Savings Calculator & Activity -->
+            <div class="space-y-6">
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">Savings Calculator</h3>
+
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Deposit Amount</label>
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="0.00"
+                        class="w-full bg-[#121214] rounded-lg px-4 py-3 text-lg font-bold outline-none"
+                      />
+                      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <span class="text-sm font-semibold">USDT</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">APY</label>
+                    <input
+                      type="text"
+                      placeholder="3.8"
+                      class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-[#8A8A9D] mb-2">Savings Period</label>
+                    <select class="w-full bg-[#121214] rounded-lg px-4 py-3 outline-none">
+                      <option>30 Days</option>
+                      <option selected>90 Days</option>
+                      <option>180 Days</option>
+                      <option>365 Days</option>
+                    </select>
+                  </div>
+
+                  <div class="pt-4 border-t border-white/10">
+                    <div class="flex justify-between mb-2">
+                      <span class="text-[#8A8A9D]">Estimated Interest</span>
+                      <span class="font-semibold text-green-500">28.50 USDT</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-[#8A8A9D]">Total After Period</span>
+                      <span class="font-semibold">1,028.50 USDT</span>
+                    </div>
+                  </div>
+
+                  <button
+                    class="w-full bg-[#F7CF06] hover:bg-yellow-500 text-black font-bold py-4 rounded-lg mt-4"
+                  >
+                    Start Saving
+                  </button>
+                </div>
+              </div>
+
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">Recent Activity</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p class="font-semibold">USDT Savings</p>
+                      <p class="text-sm text-[#8A8A9D]">Interest earned</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-green-500">+2.45 USDT</p>
+                      <p class="text-sm text-[#8A8A9D]">Today</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p class="font-semibold">ETH Savings</p>
+                      <p class="text-sm text-[#8A8A9D]">Interest earned</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="font-semibold text-green-500">+0.0021 ETH</p>
+                      <p class="text-sm text-[#8A8A9D]">Today</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Tab switching functionality
+      document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('button[id$="-tab"]')
+        const sections = document.querySelectorAll('section[id$="-section"]')
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', function () {
+            // Remove active class from all tabs and sections
+            tabs.forEach((t) => {
+              t.classList.remove('tab-active')
+              t.classList.add('glass-card')
+              t.classList.remove('bg-[#F7CF06]', 'text-black')
+            })
+
+            sections.forEach((section) => {
+              section.classList.remove('section-active')
+              section.classList.add('section-hidden')
+            })
+
+            // Add active class to clicked tab
+            this.classList.add('tab-active')
+            this.classList.remove('glass-card')
+            this.classList.add('bg-[#F7CF06]', 'text-black')
+
+            // Show corresponding section
+            const sectionId = this.id.replace('-tab', '-section')
+            document.getElementById(sectionId).classList.add('section-active')
+            document.getElementById(sectionId).classList.remove('section-hidden')
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
+
+Break this code, and convert into their respective vue 3 codes

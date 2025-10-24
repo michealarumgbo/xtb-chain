@@ -100,7 +100,7 @@
 <script setup>
 import { ref } from "vue";
 import { CheckCircle } from "lucide-vue-next";
-import Button from "@/components/ui/button.vue";
+import Button from "@/components/ui/Button.vue";
 
 const benefits = ref([
     "Trade on the go with our fully-featured mobile app",
@@ -113,7 +113,7 @@ const benefits = ref([
 
 <style scoped>
 .text-gradient {
-    @apply bg-gradient-to-r from-[#F7CF06] to-transparent text-transparent bg-clip-text;
+    @apply bg-linear-to-r from-[#F7CF06] to-transparent text-transparent bg-clip-text;
 }
 
 

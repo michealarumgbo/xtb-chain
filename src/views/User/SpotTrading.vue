@@ -25,18 +25,6 @@
                         <!-- Trading Chart -->
                         <div class="lg:col-span-2">
                             <div class="glass-card rounded-xl overflow-hidden">
-                                <!-- <div
-                                    class="bg-[#1E1E22] px-6 py-4 border-b border-white/10 flex justify-between items-center">
-                                    <div class="flex items-center space-x-4">
-                                        <h3 class="text-xl font-bold">BTC/USDT</h3>
-                                        <span class="text-green-500 font-semibold">+2.34%</span>
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <button v-for="(period, index) in chartPeriods" :key="index"
-                                            :class="['text-sm px-3 py-1 rounded', period === '1M' ? 'bg-[#F7CF06] text-black' : 'bg-[#121214] hover:bg-[#1E1E22]']">{{
-                                                period }}</button>
-                                    </div>
-                                </div> -->
                                 <div class="glass-card rounded-xl overflow-hidden" style="height: 600px;">
                                     <div ref="chartRef" class="tradingview-widget-container"
                                         style="height: 100%; width: 100%;">
@@ -292,6 +280,7 @@ body {
 .text-gradient {
     background: linear-gradient(to right, #f7cf06, #facc15);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
